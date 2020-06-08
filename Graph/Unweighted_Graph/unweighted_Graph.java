@@ -1,4 +1,4 @@
-package D.S.Graph;
+package D.S.Graph.Unweighted_Graph;
 
 import java.util.HashMap;
 import java.util.LinkedList;
