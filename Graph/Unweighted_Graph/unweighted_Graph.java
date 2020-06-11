@@ -1,18 +1,15 @@
 package D.S.Graph.Unweighted_Graph;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class unweighted_Graph<E> {
 
     private Map<E, List<E>> node = new HashMap<>();
+    private HashSet<E> visited = new HashSet<>();
 
     private void addvertex(E s) {
         node.put(s, new LinkedList<>());
     }
-
 
     public void addEdge(E source, E destination) {
         if (!node.containsKey(source))
@@ -21,7 +18,6 @@ public class unweighted_Graph<E> {
             addvertex(destination);
 
         node.get(source).add(destination);
-
 
     }
 
@@ -44,16 +40,35 @@ public class unweighted_Graph<E> {
         }
         System.out.println();
     }
-    public void delete_Node(E remove){
-        if(!node.containsKey(remove))
+
+    public void delete_Node(E remove) {
+        if (!node.containsKey(remove))
             System.out.println("Node is not in the graph");
         else
-        node.remove(remove);
-        for (E i:node.keySet()) {
+            node.remove(remove);
+        for (E i : node.keySet()) {
 
-                node.get(i).remove(remove);
+            node.get(i).remove(remove);
 
         }
     }
+
+    public void bfs(E n) {
+        BFS(n);
+        visited.clear();
+    }
+
+    private void BFS(E n) {
+        if (visited.contains(n)) {
+            return;
+        } else {
+            visited.add(n);
+            System.out.print(n + "-->");
+            for (E i : node.get(n)) {
+                BFS(i);
+            }
+        }
+    }
+
 
 }
